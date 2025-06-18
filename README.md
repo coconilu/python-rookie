@@ -197,13 +197,11 @@
 
 ```
 python-rookie/
-├── lessons/                 # 课程目录
-│   ├── lesson01/           # 第1课
-│   │   ├── tutorial.md     # 教程文档
-│   │   ├── demo.py         # 演示代码
-│   │   └── exercises/      # 练习题
-│   ├── lesson02/           # 第2课
-│   └── ...
+├── session01/              # 第1课：环境搭建与Hello World
+├── session02/              # 第2课：变量与数据类型
+├── session03/              # 第3课：运算符与表达式
+├── ...
+├── session30/              # 第30课：综合项目实战
 ├── projects/               # 项目实战
 │   ├── calculator/         # 计算器项目
 │   ├── blog_system/        # 博客系统
@@ -213,7 +211,11 @@ python-rookie/
 │   ├── references/         # 参考资料
 │   └── tools/              # 开发工具
 ├── tests/                  # 测试代码
-└── docs/                   # 文档
+├── docs/                   # 文档
+├── pyproject.toml          # 项目配置和依赖管理（uv）
+├── uv.lock                 # 依赖锁文件
+├── .venv/                  # 虚拟环境目录
+└── README.md               # 项目说明
 ```
 
 ## 学习建议
@@ -238,7 +240,8 @@ python-rookie/
 ## 环境要求
 
 ### 软件环境
-- Python 3.8+
+- Python 3.11.12（推荐使用uv自动管理）
+- uv（现代Python依赖管理工具）
 - VS Code 或 PyCharm
 - Git
 - SQLite
@@ -247,6 +250,30 @@ python-rookie/
 - 内存：8GB以上
 - 存储：10GB可用空间
 - 网络：稳定的互联网连接
+
+### 环境搭建
+
+```bash
+# 1. 安装uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+# Windows用户使用：
+# powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# 2. 克隆项目
+git clone https://github.com/your-username/python-rookie.git
+cd python-rookie
+
+# 3. 创建虚拟环境并安装依赖
+uv sync
+
+# 4. 激活虚拟环境
+# Windows: .venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
+
+# 5. 开始学习第一课
+cd session01
+uv run python demo.py
+```
 
 ## 学习资源
 

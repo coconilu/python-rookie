@@ -329,47 +329,92 @@ if __name__ == "__main__":
 
 ## 依赖管理
 
-### requirements.txt规范
+本项目使用 **uv** 作为依赖管理工具，Python版本为 **3.11.12**。
 
+### pyproject.toml规范
+
+```toml
+[project]
+name = "python-rookie"
+version = "1.0.0"
+description = "Python新手到项目负责人完整教程"
+requires-python = ">=3.11.12"
+dependencies = [
+    # 基础依赖
+    "numpy>=1.21.0",
+    "pandas>=1.3.0",
+    "matplotlib>=3.4.0",
+    # Web开发
+    "flask>=2.0.0",
+    "requests>=2.25.0",
+    # 数据库
+    "sqlalchemy>=1.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    # 测试
+    "pytest>=6.2.0",
+    "pytest-cov>=2.12.0",
+    # 代码质量
+    "flake8>=3.9.0",
+    "black>=21.6.0",
+    "ruff>=0.1.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+python = "3.11.12"
 ```
-# 基础依赖
-numpy>=1.21.0
-pandas>=1.3.0
-matplotlib>=3.4.0
 
-# Web开发
-flask>=2.0.0
-requests>=2.25.0
+### 虚拟环境和依赖安装
 
-# 数据库
-sqlalchemy>=1.4.0
-
-# 测试
-pytest>=6.2.0
-pytest-cov>=2.12.0
-
-# 代码质量
-flake8>=3.9.0
-black>=21.6.0
-```
-
-### 虚拟环境
-
-每个复杂项目应该包含虚拟环境设置说明：
+使用uv管理项目环境和依赖：
 
 ```bash
-# 创建虚拟环境
-python -m venv venv
+# 安装uv（如果尚未安装）
+curl -LsSf https://astral.sh/uv/install.sh | sh
+# 或者在Windows上
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# 创建项目并指定Python版本
+uv init --python 3.11.12
+
+# 安装项目依赖
+uv sync
+
+# 安装开发依赖
+uv sync --extra dev
 
 # 激活虚拟环境
 # Windows
-venv\Scripts\activate
+.venv\Scripts\activate
 # macOS/Linux
-source venv/bin/activate
+source .venv/bin/activate
 
-# 安装依赖
-pip install -r requirements.txt
+# 添加新依赖
+uv add package_name
+
+# 添加开发依赖
+uv add --dev package_name
+
+# 运行Python脚本
+uv run python script.py
+
+# 运行测试
+uv run pytest
 ```
+
+### uv的优势
+
+1. **极快的依赖解析和安装速度**：比pip快10-100倍
+2. **内置虚拟环境管理**：自动创建和管理.venv目录
+3. **锁文件支持**：自动生成uv.lock确保依赖版本一致性
+4. **Python版本管理**：可以自动下载和管理Python版本
+5. **兼容pip**：支持现有的requirements.txt文件
 
 ## 测试规范
 
