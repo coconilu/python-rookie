@@ -1,0 +1,91 @@
+# 文件管理器项目依赖
+
+# 核心依赖
+tkinter  # GUI界面（Python标准库，通常已包含）
+
+# 文件操作增强
+send2trash>=1.8.0  # 安全删除文件到回收站
+watchdog>=2.1.9    # 文件系统监控
+
+# 数据处理
+pandas>=1.5.0      # 数据分析（可选，用于高级统计）
+numpy>=1.21.0      # 数值计算（pandas依赖）
+
+# 图像处理（用于文件预览）
+Pillow>=9.0.0      # 图像处理
+
+# 压缩文件处理
+patool>=1.12.0     # 多格式压缩文件处理
+
+# 命令行界面增强
+click>=8.0.0       # 命令行参数解析
+colorama>=0.4.4    # 彩色终端输出
+rich>=12.0.0       # 富文本终端显示
+
+# 配置文件处理
+PyYAML>=6.0        # YAML配置文件支持
+configparser       # INI配置文件（标准库）
+
+# 日志和调试
+loguru>=0.6.0      # 增强的日志库
+
+# 文件类型检测
+python-magic>=0.4.24  # 文件类型检测（需要libmagic）
+# 备选方案（纯Python实现）
+filetype>=1.0.10   # 文件类型检测（纯Python）
+
+# 进度条
+tqdm>=4.64.0       # 进度条显示
+
+# 哈希计算（用于重复文件检测）
+hashlib            # 哈希计算（标准库）
+
+# 系统信息
+psutil>=5.9.0      # 系统和进程信息
+
+# 测试框架
+pytest>=7.0.0      # 单元测试框架
+pytest-cov>=3.0.0  # 测试覆盖率
+
+# 代码质量
+flake8>=4.0.0      # 代码风格检查
+black>=22.0.0      # 代码格式化
+isort>=5.10.0      # 导入排序
+
+# 文档生成
+sphinx>=4.5.0      # 文档生成
+
+# 开发工具
+pre-commit>=2.17.0 # Git钩子管理
+
+# 可选依赖（根据需要安装）
+# matplotlib>=3.5.0  # 图表绘制（用于磁盘使用分析）
+# seaborn>=0.11.0    # 统计图表
+# plotly>=5.0.0      # 交互式图表
+
+# 网络功能（可选）
+# requests>=2.27.0   # HTTP请求
+# paramiko>=2.9.0    # SSH/SFTP客户端
+# ftplib             # FTP客户端（标准库）
+
+# 数据库（可选）
+# sqlite3            # SQLite数据库（标准库）
+
+# 加密功能（可选）
+# cryptography>=36.0.0  # 文件加密
+
+# 注意事项：
+# 1. tkinter在大多数Python安装中已包含，但某些Linux发行版可能需要单独安装
+# 2. python-magic需要系统安装libmagic库，可以用filetype作为替代
+# 3. 某些依赖可能需要编译，建议使用conda或预编译的wheel包
+# 4. 开发依赖（测试、文档等）在生产环境中可以不安装
+
+# 安装命令示例：
+# pip install -r requirements.txt
+# 
+# 仅安装核心依赖：
+# pip install send2trash watchdog Pillow click colorama rich PyYAML loguru filetype tqdm psutil
+#
+# 开发环境安装：
+# pip install -r requirements.txt
+# pip install pytest pytest-cov flake8 black isort pre-commit
