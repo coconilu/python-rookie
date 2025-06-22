@@ -1,0 +1,213 @@
+{
+  "metadata": {
+    "title": "员工信息数据集",
+    "description": "用于演示数据处理功能的示例数据",
+    "version": "1.0",
+    "created_date": "2024-01-01",
+    "total_records": 15
+  },
+  "employees": [
+    {
+      "id": 1,
+      "name": "张三",
+      "age": 28,
+      "department": "技术部",
+      "position": "软件工程师",
+      "salary": 12000,
+      "hire_date": "2022-03-15",
+      "skills": ["Python", "JavaScript", "SQL"],
+      "performance_score": 4.2
+    },
+    {
+      "id": 2,
+      "name": "李四",
+      "age": 32,
+      "department": "市场部",
+      "position": "市场经理",
+      "salary": 15000,
+      "hire_date": "2021-07-20",
+      "skills": ["营销策划", "数据分析", "客户关系"],
+      "performance_score": 4.5
+    },
+    {
+      "id": 3,
+      "name": "王五",
+      "age": 35,
+      "department": "技术部",
+      "position": "高级工程师",
+      "salary": 18000,
+      "hire_date": "2020-01-10",
+      "skills": ["Java", "Spring", "微服务", "Docker"],
+      "performance_score": 4.7
+    },
+    {
+      "id": 4,
+      "name": "赵六",
+      "age": 29,
+      "department": "设计部",
+      "position": "UI设计师",
+      "salary": 10000,
+      "hire_date": "2022-09-05",
+      "skills": ["Photoshop", "Figma", "用户体验"],
+      "performance_score": 4.0
+    },
+    {
+      "id": 5,
+      "name": "钱七",
+      "age": 41,
+      "department": "管理层",
+      "position": "技术总监",
+      "salary": 25000,
+      "hire_date": "2019-04-12",
+      "skills": ["团队管理", "技术架构", "战略规划"],
+      "performance_score": 4.8
+    },
+    {
+      "id": 6,
+      "name": "孙八",
+      "age": 26,
+      "department": "技术部",
+      "position": "前端工程师",
+      "salary": 9000,
+      "hire_date": "2023-02-28",
+      "skills": ["React", "Vue", "TypeScript"],
+      "performance_score": 3.8
+    },
+    {
+      "id": 7,
+      "name": "周九",
+      "age": 33,
+      "department": "销售部",
+      "position": "销售经理",
+      "salary": 13000,
+      "hire_date": "2021-11-15",
+      "skills": ["销售技巧", "客户开发", "谈判"],
+      "performance_score": 4.3
+    },
+    {
+      "id": 8,
+      "name": "吴十",
+      "age": 30,
+      "department": "技术部",
+      "position": "后端工程师",
+      "salary": 14000,
+      "hire_date": "2021-06-01",
+      "skills": ["Python", "Django", "PostgreSQL"],
+      "performance_score": 4.1
+    },
+    {
+      "id": 9,
+      "name": "郑十一",
+      "age": 27,
+      "department": "设计部",
+      "position": "平面设计师",
+      "salary": 8500,
+      "hire_date": "2022-12-10",
+      "skills": ["Adobe Creative Suite", "品牌设计"],
+      "performance_score": 3.9
+    },
+    {
+      "id": 10,
+      "name": "王十二",
+      "age": 38,
+      "department": "人事部",
+      "position": "人事经理",
+      "salary": 11000,
+      "hire_date": "2020-08-20",
+      "skills": ["招聘", "员工关系", "薪酬管理"],
+      "performance_score": 4.4
+    },
+    {
+      "id": 11,
+      "name": "李十三",
+      "age": 31,
+      "department": "技术部",
+      "position": "DevOps工程师",
+      "salary": 16000,
+      "hire_date": "2021-03-08",
+      "skills": ["Kubernetes", "AWS", "CI/CD"],
+      "performance_score": 4.6
+    },
+    {
+      "id": 12,
+      "name": "张十四",
+      "age": 24,
+      "department": "市场部",
+      "position": "市场专员",
+      "salary": 7000,
+      "hire_date": "2023-05-15",
+      "skills": ["社交媒体", "内容营销"],
+      "performance_score": 3.7
+    },
+    {
+      "id": 13,
+      "name": "陈十五",
+      "age": 36,
+      "department": "财务部",
+      "position": "财务经理",
+      "salary": 14500,
+      "hire_date": "2020-12-01",
+      "skills": ["财务分析", "预算管理", "税务"],
+      "performance_score": 4.5
+    },
+    {
+      "id": 14,
+      "name": "刘十六",
+      "age": 29,
+      "department": "技术部",
+      "position": "数据工程师",
+      "salary": 13500,
+      "hire_date": "2022-01-20",
+      "skills": ["Python", "Spark", "数据建模"],
+      "performance_score": 4.2
+    },
+    {
+      "id": 15,
+      "name": "黄十七",
+      "age": 34,
+      "department": "产品部",
+      "position": "产品经理",
+      "salary": 17000,
+      "hire_date": "2021-09-10",
+      "skills": ["产品设计", "用户研究", "项目管理"],
+      "performance_score": 4.4
+    }
+  ],
+  "departments": {
+    "技术部": {
+      "manager": "钱七",
+      "employee_count": 7,
+      "budget": 500000
+    },
+    "市场部": {
+      "manager": "李四",
+      "employee_count": 2,
+      "budget": 200000
+    },
+    "设计部": {
+      "manager": "赵六",
+      "employee_count": 2,
+      "budget": 150000
+    },
+    "销售部": {
+      "manager": "周九",
+      "employee_count": 1,
+      "budget": 100000
+    },
+    "人事部": {
+      "manager": "王十二",
+      "employee_count": 1,
+      "budget": 80000
+    },
+    "财务部": {
+      "manager": "陈十五",
+      "employee_count": 1,
+      "budget": 120000
+    },
+    "产品部": {
+      "manager": "黄十七",
+      "employee_count": 1,
+      "budget": 180000
+    }
+  }
+}
