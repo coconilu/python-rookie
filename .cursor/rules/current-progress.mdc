@@ -1,0 +1,134 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Python 教程项目当前进度
+
+## 已完成课程（Session 01-13）
+
+### Session 01：环境搭建与Hello World
+- 位置：[session01/](mdc:session01)
+- 演示项目：交互式计算器
+- 状态：✅ 完成
+
+### Session 02：变量与数据类型
+- 位置：[session02/](mdc:session02)
+- 演示项目：个人信息管理系统（用户管理器）
+- 状态：✅ 完成
+
+### Session 03：运算符与表达式
+- 位置：[session03/](mdc:session03)
+- 演示项目：BMI 计算器
+- 状态：✅ 完成
+
+### Session 04：控制流程
+- 位置：[session04/](mdc:session04)
+- 演示项目：猜数字游戏
+- 状态：✅ 完成
+
+### Session 05：数据结构基础
+- 位置：[session05/](mdc:session05)
+- 演示项目：学生成绩管理系统
+- 状态：✅ 完成
+
+### Session 06：函数编程
+- 位置：[session06/](mdc:session06)
+- 演示项目：文本处理工具集
+- 状态：✅ 完成
+
+### Session 07：文件操作
+- 位置：[session07/](mdc:session07)
+- 演示项目：文件管理器
+- 状态：✅ 完成
+
+### Session 08：面向对象编程基础
+- 位置：[session08/](mdc:session08)
+- 演示项目：银行账户管理系统
+- 状态：✅ 完成
+
+### Session 09：面向对象进阶
+- 位置：[session09/](mdc:session09)
+- 演示项目：动物园管理系统
+- 状态：✅ 完成
+
+### Session 10：模块与包
+- 位置：[session10/](mdc:session10)
+- 演示项目：数据分析工具包
+- 状态：✅ 完成
+
+### Session 11：错误处理与调试
+- 位置：[session11/](mdc:session11)
+- 演示项目：错误处理和调试示例
+- 状态：✅ 完成
+
+### Session 12：数据处理 - NumPy
+- 位置：[session12/](mdc:session12)
+- 演示项目：股票数据分析器
+- 状态：✅ 完成
+
+### Session 13：数据分析 - Pandas
+- 位置：[session13/](mdc:session13)
+- 演示项目：数据分析项目
+- 状态：✅ 完成
+
+## 待开发课程（Session 14-30）
+
+### 第三阶段剩余课程（Session 14-16）
+- Session 14：网络编程（HTTP请求、API调用、爬虫基础）
+- Session 15：数据库操作（SQLite、CRUD操作）
+- Session 16：GUI编程 - Tkinter（桌面应用开发）
+
+### 第四阶段：Web开发基础（Session 17-20）
+- Session 17：Web开发入门 - Flask
+- Session 18：数据库集成（SQLAlchemy ORM）
+- Session 19：前端集成（HTML/CSS/JavaScript）
+- Session 20：API开发（RESTful API）
+
+### 第五阶段：项目实战与工程化（Session 21-25）
+- Session 21：版本控制 - Git
+- Session 22：测试驱动开发
+- Session 23：代码质量与规范
+- Session 24：性能优化
+- Session 25：部署与运维
+
+### 第六阶段：综合项目实战（Session 26-30）
+- Session 26-30：在线商城系统完整开发
+
+## 技术栈说明
+
+### 已使用的技术
+- Python 3.11+
+- NumPy（数据处理）
+- Pandas（数据分析）
+- 标准库模块（os, sys, json, csv, datetime, pathlib等）
+
+### 计划使用的技术
+- Flask（Web框架）
+- SQLite（数据库）
+- SQLAlchemy（ORM）
+- Tkinter（GUI）
+- requests（HTTP请求）
+- pytest（测试框架）
+- Git（版本控制）
+
+## 开发注意事项
+
+### 继续开发新课程时
+1. 保持与已有课程的风格一致
+2. 难度要循序渐进
+3. 确保示例代码的实用性
+4. 每个课程都要有完整的项目
+
+### 引入新依赖时
+1. 在 [pyproject.toml](mdc:pyproject.toml) 中添加依赖
+2. 说明为什么需要这个依赖
+3. 提供安装和使用说明
+4. 考虑是否有更轻量的替代方案
+
+### 项目示例选择
+- Session 14：天气信息获取器（展示API调用）
+- Session 15：图书管理系统（展示数据库操作）
+- Session 16：桌面计算器（展示GUI编程）
+- Session 17-20：个人博客系统（展示Web开发全流程）
+- Session 26-30：在线商城（综合所有知识点）

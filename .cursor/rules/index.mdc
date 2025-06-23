@@ -1,0 +1,54 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Cursor Rules 索引
+
+本目录包含 Python 新手教程项目的所有 Cursor Rules 文件，用于指导 AI 助手理解项目结构和开发规范。
+
+## 规则文件列表
+
+### 1. [python-rookie.mdc](mdc:python-rookie.mdc)
+**主项目规则文件**
+- 项目概述和目标
+- 整体项目结构说明
+- 开发规范概要
+- 课程阶段划分
+- 依赖管理说明
+- 教学建议
+
+### 2. [teaching-guidelines.mdc](mdc:teaching-guidelines.mdc)
+**教学内容编写指南**
+- 代码示例编写原则
+- 初学者友好的代码风格
+- 项目结构详细规范
+- 文档编写模板
+- 练习题设计原则
+- 质量检查清单
+
+### 3. [current-progress.mdc](mdc:current-progress.mdc)
+**项目当前进度跟踪**
+- 已完成课程列表（Session 01-13）
+- 待开发课程规划（Session 14-30）
+- 技术栈使用情况
+- 未来开发计划
+- 项目示例选择建议
+
+## 使用说明
+
+1. **开发新课程时**：参考 `teaching-guidelines.mdc` 确保内容质量
+2. **了解项目状态**：查看 `current-progress.mdc` 了解当前进度
+3. **理解项目整体**：阅读 `python-rookie.mdc` 掌握项目目标
+
+## 规则更新原则
+
+- 完成新课程后，更新 `current-progress.mdc`
+- 发现新的最佳实践时，更新 `teaching-guidelines.mdc`
+- 项目结构有重大调整时，更新 `python-rookie.mdc`
+- 所有更新都应保持文件间的一致性
+
+## 相关文件
+
+- [项目 README](mdc:../../README.md) - 项目整体介绍
+- [项目配置](mdc:../../pyproject.toml) - 依赖管理配置
