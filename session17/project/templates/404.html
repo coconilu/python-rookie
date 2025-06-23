@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}页面未找到 - {{ site_name }}{% endblock %}
+
+{% block content %}
+    <div class="error-page">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-message">页面未找到</h2>
+        <p class="error-description">抱歉，您访问的页面不存在或已被删除。</p>
+        
+        <div class="error-actions">
+            <a href="{{ url_for('index') }}" class="btn btn-primary">返回首页</a>
+            <a href="javascript:history.back()" class="btn btn-secondary">返回上一页</a>
+        </div>
+        
+        <div class="error-suggestions">
+            <p>您可以尝试：</p>
+            <ul>
+                <li>检查网址是否正确</li>
+                <li>使用搜索功能查找相关内容</li>
+                <li>查看最新文章</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <!-- 推荐内容 -->
+    <div class="widget">
+        <h3>推荐阅读</h3>
+        <ul class="widget-list">
+            <li><a href="{{ url_for('index') }}">最新文章</a></li>
+            <li><a href="{{ url_for('about') }}">关于本站</a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .error-page {
+        text-align: center;
+        padding: 50px 0;
+    }
+    
+    .error-code {
+        font-size: 120px;
+        font-weight: bold;
+        color: #e0e0e0;
+        margin: 0;
+        line-height: 1;
+    }
+    
+    .error-message {
+        font-size: 32px;
+        color: #333;
+        margin: 20px 0;
+    }
+    
+    .error-description {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 30px;
+    }
+    
+    .error-actions {
+        margin: 30px 0;
+    }
+    
+    .error-actions .btn {
+        margin: 0 10px;
+    }
+    
+    .error-suggestions {
+        margin-top: 50px;
+        text-align: left;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .error-suggestions p {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    
+    .error-suggestions ul {
+        margin-left: 20px;
+    }
+    
+    .error-suggestions li {
+        margin-bottom: 5px;
+    }
+</style>
+{% endblock %} 

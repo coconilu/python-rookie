@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} - {{ site_name }}{% endblock %}
+
+{% block content %}
+    <article class="post-detail">
+        <header class="post-header">
+            <h1 class="post-title">{{ post.title }}</h1>
+            
+            <div class="post-meta">
+                <span class="post-author">作者：{{ post.author }}</span>
+                <span class="post-date">发布于：{{ post.created_at|format_datetime }}</span>
+                {% if post.updated_at != post.created_at %}
+                    <span class="post-updated">更新于：{{ post.updated_at|format_datetime }}</span>
+                {% endif %}
+                <span class="post-views">阅读：{{ post.views }}次</span>
+            </div>
+            
+            {% if post.tags %}
+                <div class="post-tags">
+                    标签：
+                    {% for tag in post.tags %}
+                        <a href="{{ url_for('posts_by_tag', tag=tag) }}" class="tag-link">{{ tag }}</a>
+                        {% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </header>
+        
+        <div class="post-content">
+            {{ post.content|safe|replace('\n', '<br>') }}
+        </div>
+        
+        <footer class="post-footer">
+            <div class="post-actions">
+                <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn btn-edit">编辑</a>
+                <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-delete" 
+                            onclick="return confirm('确定要删除这篇文章吗？');">删除</button>
+                </form>
+                <a href="{{ url_for('index') }}" class="btn btn-back">返回列表</a>
+            </div>
+        </footer>
+    </article>
+    
+    <!-- 相关文章 -->
+    {% if related_posts %}
+        <section class="related-posts">
+            <h2>相关文章</h2>
+            <div class="related-list">
+                {% for related in related_posts %}
+                    <div class="related-item">
+                        <h3><a href="{{ url_for('post_detail', post_id=related.id) }}">{{ related.title }}</a></h3>
+                        <p>{{ related.content|truncate_content(100) }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+    <!-- 文章目录 -->
+    <div class="widget">
+        <h3>文章信息</h3>
+        <ul class="widget-list">
+            <li>字数：约{{ post.content|length }}字</li>
+            <li>阅读时间：约{{ (post.content|length / 300)|round }}分钟</li>
+        </ul>
+    </div>
+    
+    <!-- 操作菜单 -->
+    <div class="widget">
+        <h3>操作</h3>
+        <ul class="widget-list">
+            <li><a href="{{ url_for('edit_post', post_id=post.id) }}">编辑文章</a></li>
+            <li><a href="{{ url_for('new_post') }}">写新文章</a></li>
+            <li><a href="{{ url_for('index') }}">返回首页</a></li>
+        </ul>
+    </div>
+{% endblock %} 

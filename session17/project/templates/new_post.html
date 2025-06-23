@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}写新文章 - {{ site_name }}{% endblock %}
+
+{% block content %}
+    <h1 class="page-title">写新文章</h1>
+    
+    <form method="POST" class="post-form">
+        <div class="form-group">
+            <label for="title">文章标题</label>
+            <input type="text" id="title" name="title" class="form-control" 
+                   placeholder="请输入文章标题" required autofocus>
+        </div>
+        
+        <div class="form-group">
+            <label for="content">文章内容</label>
+            <textarea id="content" name="content" class="form-control" rows="15" 
+                      placeholder="在这里写下你的文章内容..." required></textarea>
+            <small class="form-help">支持Markdown语法</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="tags">标签</label>
+            <input type="text" id="tags" name="tags" class="form-control" 
+                   placeholder="多个标签用英文逗号分隔，如：Python, Flask, Web开发">
+            <small class="form-help">标签有助于文章分类和搜索</small>
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">发布文章</button>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">取消</a>
+        </div>
+    </form>
+{% endblock %}
+
+{% block sidebar %}
+    <!-- 写作提示 -->
+    <div class="widget">
+        <h3>写作提示</h3>
+        <ul class="widget-list">
+            <li>使用清晰的标题</li>
+            <li>合理分段，提高可读性</li>
+            <li>添加相关标签</li>
+            <li>支持Markdown语法</li>
+        </ul>
+    </div>
+    
+    <!-- Markdown语法 -->
+    <div class="widget">
+        <h3>Markdown语法</h3>
+        <ul class="widget-list">
+            <li><code># 标题</code></li>
+            <li><code>**粗体**</code></li>
+            <li><code>*斜体*</code></li>
+            <li><code>[链接](url)</code></li>
+            <li><code>```代码块```</code></li>
+            <li><code>- 列表项</code></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .post-form {
+        max-width: 800px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+    
+    textarea.form-control {
+        resize: vertical;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .form-help {
+        display: block;
+        margin-top: 5px;
+        color: #666;
+        font-size: 14px;
+    }
+    
+    .form-actions {
+        margin-top: 30px;
+    }
+    
+    .form-actions .btn {
+        margin-right: 10px;
+    }
+</style>
+{% endblock %} 

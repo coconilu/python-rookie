@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}编辑文章 - {{ site_name }}{% endblock %}
+
+{% block content %}
+    <h1 class="page-title">编辑文章</h1>
+    
+    <form method="POST" class="post-form">
+        <div class="form-group">
+            <label for="title">文章标题</label>
+            <input type="text" id="title" name="title" class="form-control" 
+                   value="{{ post.title }}" required autofocus>
+        </div>
+        
+        <div class="form-group">
+            <label for="content">文章内容</label>
+            <textarea id="content" name="content" class="form-control" rows="15" required>{{ post.content }}</textarea>
+            <small class="form-help">支持Markdown语法</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="tags">标签</label>
+            <input type="text" id="tags" name="tags" class="form-control" 
+                   value="{{ ', '.join(post.tags) }}"
+                   placeholder="多个标签用英文逗号分隔">
+            <small class="form-help">标签有助于文章分类和搜索</small>
+        </div>
+        
+        <div class="form-info">
+            <p>文章ID：{{ post.id }}</p>
+            <p>创建时间：{{ post.created_at|format_datetime }}</p>
+            <p>最后更新：{{ post.updated_at|format_datetime }}</p>
+            <p>阅读次数：{{ post.views }}</p>
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">保存修改</button>
+            <a href="{{ url_for('post_detail', post_id=post.id) }}" class="btn btn-secondary">取消</a>
+            <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST" style="display: inline;">
+                <button type="submit" class="btn btn-danger" 
+                        onclick="return confirm('确定要删除这篇文章吗？此操作不可恢复！');">删除文章</button>
+            </form>
+        </div>
+    </form>
+{% endblock %}
+
+{% block sidebar %}
+    <!-- 编辑提示 -->
+    <div class="widget">
+        <h3>编辑提示</h3>
+        <ul class="widget-list">
+            <li>修改会自动更新时间戳</li>
+            <li>删除操作不可恢复</li>
+            <li>建议先预览再保存</li>
+        </ul>
+    </div>
+    
+    <!-- 快速操作 -->
+    <div class="widget">
+        <h3>快速操作</h3>
+        <ul class="widget-list">
+            <li><a href="{{ url_for('post_detail', post_id=post.id) }}">查看文章</a></li>
+            <li><a href="{{ url_for('new_post') }}">写新文章</a></li>
+            <li><a href="{{ url_for('index') }}">返回首页</a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .post-form {
+        max-width: 800px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+    
+    textarea.form-control {
+        resize: vertical;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .form-help {
+        display: block;
+        margin-top: 5px;
+        color: #666;
+        font-size: 14px;
+    }
+    
+    .form-info {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 4px;
+        margin: 20px 0;
+    }
+    
+    .form-info p {
+        margin: 5px 0;
+        color: #666;
+    }
+    
+    .form-actions {
+        margin-top: 30px;
+    }
+    
+    .form-actions .btn {
+        margin-right: 10px;
+    }
+    
+    .btn-danger {
+        background: #dc3545;
+        color: white;
+        float: right;
+    }
+    
+    .btn-danger:hover {
+        background: #c82333;
+    }
+</style>
+{% endblock %} 

@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}关于 - {{ site_name }}{% endblock %}
+
+{% block content %}
+    <h1 class="page-title">关于本站</h1>
+    
+    <div class="about-content">
+        <h2>欢迎来到我的个人博客！</h2>
+        
+        <p>这是一个使用 Flask 框架搭建的个人博客系统。在这里，我会分享我的学习笔记、技术心得和生活感悟。</p>
+        
+        <h3>关于我</h3>
+        <p>我是一名热爱编程的开发者，正在学习 Python 和 Web 开发。通过这个博客项目，我希望能够：</p>
+        <ul>
+            <li>记录自己的学习历程</li>
+            <li>分享技术经验和心得</li>
+            <li>与其他开发者交流学习</li>
+            <li>不断提升自己的技术水平</li>
+        </ul>
+        
+        <h3>技术栈</h3>
+        <p>本博客系统使用了以下技术：</p>
+        <ul>
+            <li><strong>后端框架：</strong>Flask (Python)</li>
+            <li><strong>模板引擎：</strong>Jinja2</li>
+            <li><strong>数据存储：</strong>JSON 文件（适合小型博客）</li>
+            <li><strong>前端：</strong>HTML5 + CSS3 + JavaScript</li>
+            <li><strong>部署：</strong>可部署在任何支持 Python 的服务器上</li>
+        </ul>
+        
+        <h3>功能特性</h3>
+        <ul>
+            <li>文章的创建、编辑、删除</li>
+            <li>标签系统，方便文章分类</li>
+            <li>全文搜索功能</li>
+            <li>文章浏览计数</li>
+            <li>响应式设计，支持移动设备</li>
+            <li>简洁美观的界面</li>
+        </ul>
+        
+        <h3>联系方式</h3>
+        <p>如果你有任何问题或建议，欢迎通过以下方式联系我：</p>
+        <ul>
+            <li>Email: your-email@example.com</li>
+            <li>GitHub: <a href="https://github.com/your-username" target="_blank">your-username</a></li>
+        </ul>
+        
+        <h3>致谢</h3>
+        <p>感谢 Flask 社区提供了如此优秀的框架，让 Web 开发变得简单而有趣！</p>
+        
+        <div class="about-footer">
+            <p><em>持续学习，不断进步！</em></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <!-- 快速链接 -->
+    <div class="widget">
+        <h3>快速链接</h3>
+        <ul class="widget-list">
+            <li><a href="{{ url_for('index') }}">返回首页</a></li>
+            <li><a href="{{ url_for('new_post') }}">写新文章</a></li>
+            <li><a href="https://flask.palletsprojects.com/" target="_blank">Flask 官网</a></li>
+            <li><a href="https://github.com" target="_blank">GitHub</a></li>
+        </ul>
+    </div>
+    
+    <!-- 站点统计 -->
+    <div class="widget">
+        <h3>站点统计</h3>
+        <ul class="widget-list">
+            <li>文章总数：{{ all_tags.values()|sum }}</li>
+            <li>标签总数：{{ all_tags|length }}</li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .about-content {
+        line-height: 1.8;
+    }
+    
+    .about-content h2 {
+        color: #333;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    
+    .about-content h3 {
+        color: #666;
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+    
+    .about-content ul {
+        margin-left: 20px;
+    }
+    
+    .about-content li {
+        margin-bottom: 8px;
+    }
+    
+    .about-footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #e0e0e0;
+        text-align: center;
+        font-style: italic;
+        color: #666;
+    }
+</style>
+{% endblock %} 

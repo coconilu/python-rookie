@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block title %}文章管理 - {{ site_name }}{% endblock %}
+
+{% block content %}
+    <h1 class="page-title">文章管理</h1>
+    
+    <div class="admin-actions">
+        <a href="{{ url_for('new_post') }}" class="btn btn-primary">写新文章</a>
+        <span class="post-count">共 {{ posts|length }} 篇文章</span>
+    </div>
+    
+    {% if posts %}
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>标题</th>
+                    <th>作者</th>
+                    <th>创建时间</th>
+                    <th>更新时间</th>
+                    <th>阅读</th>
+                    <th>标签</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td class="post-title-cell">
+                            <a href="{{ url_for('post_detail', post_id=post.id) }}" target="_blank">
+                                {{ post.title|truncate(30) }}
+                            </a>
+                        </td>
+                        <td>{{ post.author }}</td>
+                        <td>{{ post.created_at|format_date }}</td>
+                        <td>{{ post.updated_at|format_date }}</td>
+                        <td>{{ post.views }}</td>
+                        <td>
+                            {% if post.tags %}
+                                {{ post.tags|join(', ')|truncate(20) }}
+                            {% else %}
+                                <span class="no-tags">无</span>
+                            {% endif %}
+                        </td>
+                        <td class="actions-cell">
+                            <a href="{{ url_for('post_detail', post_id=post.id) }}" class="btn-small btn-view">查看</a>
+                            <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn-small btn-edit">编辑</a>
+                            <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST" class="inline-form">
+                                <button type="submit" class="btn-small btn-delete" 
+                                        onclick="return confirm('确定要删除文章「{{ post.title }}」吗？');">删除</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty-state">
+            <p>还没有发布任何文章。</p>
+            <p><a href="{{ url_for('new_post') }}">写第一篇文章</a></p>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+    <!-- 管理统计 -->
+    <div class="widget">
+        <h3>统计信息</h3>
+        <ul class="widget-list">
+            <li>文章总数：{{ posts|length }}</li>
+            <li>总阅读量：{{ posts|sum(attribute='views') }}</li>
+            <li>平均阅读：{{ (posts|sum(attribute='views') / posts|length)|round if posts else 0 }}</li>
+        </ul>
+    </div>
+    
+    <!-- 快速操作 -->
+    <div class="widget">
+        <h3>快速操作</h3>
+        <ul class="widget-list">
+            <li><a href="{{ url_for('new_post') }}">写新文章</a></li>
+            <li><a href="{{ url_for('index') }}">返回首页</a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .admin-actions {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .post-count {
+        color: #666;
+    }
+    
+    .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .admin-table th {
+        background: #f8f9fa;
+        padding: 12px;
+        text-align: left;
+        font-weight: bold;
+        border-bottom: 2px solid #dee2e6;
+    }
+    
+    .admin-table td {
+        padding: 12px;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .admin-table tr:hover {
+        background: #f8f9fa;
+    }
+    
+    .post-title-cell a {
+        color: #333;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    
+    .post-title-cell a:hover {
+        color: #007bff;
+        text-decoration: underline;
+    }
+    
+    .no-tags {
+        color: #999;
+        font-style: italic;
+    }
+    
+    .actions-cell {
+        white-space: nowrap;
+    }
+    
+    .inline-form {
+        display: inline;
+    }
+    
+    .btn-small {
+        padding: 4px 8px;
+        font-size: 12px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        text-decoration: none;
+        margin-right: 5px;
+    }
+    
+    .btn-view {
+        background: #17a2b8;
+        color: white;
+    }
+    
+    .btn-edit {
+        background: #28a745;
+        color: white;
+    }
+    
+    .btn-delete {
+        background: #dc3545;
+        color: white;
+    }
+    
+    .btn-small:hover {
+        opacity: 0.8;
+    }
+    
+    @media (max-width: 768px) {
+        .admin-table {
+            font-size: 14px;
+        }
+        
+        .admin-table th:nth-child(4),
+        .admin-table td:nth-child(4),
+        .admin-table th:nth-child(5),
+        .admin-table td:nth-child(5) {
+            display: none;
+        }
+    }
+</style>
+{% endblock %} 
