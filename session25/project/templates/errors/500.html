@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}服务器错误 - Flask部署示例{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <div class="error-page">
+            <h1 class="display-1 text-muted">500</h1>
+            <h2 class="mb-4">
+                <i class="bi bi-exclamation-octagon text-danger"></i>
+                服务器内部错误
+            </h2>
+            <p class="lead mb-4">
+                抱歉，服务器遇到了一个错误，无法完成您的请求。
+            </p>
+            <div class="mb-4">
+                <a href="{{ url_for('index') }}" class="btn btn-primary me-2">
+                    <i class="bi bi-house"></i> 返回首页
+                </a>
+                <button onclick="location.reload()" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-clockwise"></i> 重新加载
+                </button>
+            </div>
+            
+            <div class="alert alert-warning" role="alert">
+                <h4 class="alert-heading">
+                    <i class="bi bi-info-circle"></i> 故障排查建议
+                </h4>
+                <p>如果问题持续存在，请尝试以下操作：</p>
+                <hr>
+                <ul class="list-unstyled mb-0 text-start">
+                    <li><i class="bi bi-check"></i> 刷新页面重试</li>
+                    <li><i class="bi bi-check"></i> 清除浏览器缓存</li>
+                    <li><i class="bi bi-check"></i> 检查网络连接</li>
+                    <li><i class="bi bi-check"></i> 稍后再试</li>
+                </ul>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="bi bi-activity text-success"></i> 
+                                健康检查
+                            </h5>
+                            <p class="card-text">检查应用健康状态</p>
+                            <a href="/health" class="btn btn-success btn-sm" target="_blank">
+                                <i class="bi bi-heart-pulse"></i> 检查状态
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="bi bi-info-square text-info"></i> 
+                                系统信息
+                            </h5>
+                            <p class="card-text">查看系统运行状态</p>
+                            <a href="/api/info" class="btn btn-info btn-sm" target="_blank">
+                                <i class="bi bi-cpu"></i> 查看信息
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-5">
+                <h4>常见错误原因：</h4>
+                <div class="row text-start">
+                    <div class="col-md-6">
+                        <h6><i class="bi bi-server text-danger"></i> 服务器问题</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-dot"></i> 应用程序崩溃</li>
+                            <li><i class="bi bi-dot"></i> 数据库连接失败</li>
+                            <li><i class="bi bi-dot"></i> 内存不足</li>
+                            <li><i class="bi bi-dot"></i> 磁盘空间不足</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6><i class="bi bi-code-slash text-warning"></i> 应用问题</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-dot"></i> 代码错误</li>
+                            <li><i class="bi bi-dot"></i> 配置错误</li>
+                            <li><i class="bi bi-dot"></i> 依赖缺失</li>
+                            <li><i class="bi bi-dot"></i> 权限问题</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-4">
+                <div class="alert alert-info" role="alert">
+                    <strong>开发者提示：</strong> 
+                    错误详情已记录到日志文件中。请检查应用日志以获取更多信息。
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.error-page {
+    padding: 2rem 0;
+}
+
+.display-1 {
+    font-size: 8rem;
+    font-weight: 300;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .display-1 {
+        font-size: 4rem;
+    }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+
+{% block title %}关于 - Flask部署示例{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1><i class="bi bi-info-circle"></i> 关于本项目</h1>
+        <p class="lead">这是Session25的示例项目，展示了Python Web应用的完整部署与运维流程。</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-8">
+        <h2>项目概述</h2>
+        <p>
+            本项目是一个完整的Flask Web应用，专门用于演示Python项目的部署与运维最佳实践。
+            它涵盖了从开发环境到生产环境的完整部署流程，包括容器化、负载均衡、监控、日志记录等关键技术。
+        </p>
+        
+        <h3>主要功能</h3>
+        <ul>
+            <li><strong>Web界面</strong>：响应式的用户界面，基于Bootstrap 5</li>
+            <li><strong>RESTful API</strong>：提供JSON格式的API接口</li>
+            <li><strong>健康检查</strong>：实时监控应用和系统状态</li>
+            <li><strong>日志记录</strong>：完整的应用日志和访问日志</li>
+            <li><strong>错误处理</strong>：优雅的错误处理和用户友好的错误页面</li>
+            <li><strong>配置管理</strong>：支持多环境配置（开发、测试、生产）</li>
+        </ul>
+        
+        <h3>技术架构</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <h5>前端技术</h5>
+                <ul>
+                    <li>HTML5 + CSS3</li>
+                    <li>Bootstrap 5</li>
+                    <li>Bootstrap Icons</li>
+                    <li>JavaScript (ES6+)</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h5>后端技术</h5>
+                <ul>
+                    <li>Python 3.8+</li>
+                    <li>Flask Web框架</li>
+                    <li>Werkzeug WSGI工具包</li>
+                    <li>psutil系统监控</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h3>部署技术栈</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Web服务器</h5>
+                <ul>
+                    <li>Gunicorn WSGI服务器</li>
+                    <li>Nginx反向代理</li>
+                    <li>SSL/TLS加密</li>
+                    <li>HTTP/2支持</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h5>运维工具</h5>
+                <ul>
+                    <li>Docker容器化</li>
+                    <li>systemd服务管理</li>
+                    <li>日志轮转</li>
+                    <li>进程监控</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h3>学习目标</h3>
+        <p>通过本项目，你将学会：</p>
+        <ol>
+            <li><strong>虚拟环境管理</strong>：使用venv和uv管理Python环境</li>
+            <li><strong>依赖管理</strong>：使用requirements.txt和pyproject.toml</li>
+            <li><strong>配置管理</strong>：多环境配置和敏感信息保护</li>
+            <li><strong>Web服务器配置</strong>：Gunicorn和Nginx的配置优化</li>
+            <li><strong>容器化部署</strong>：Docker镜像构建和容器编排</li>
+            <li><strong>服务管理</strong>：systemd服务配置和管理</li>
+            <li><strong>监控和日志</strong>：应用监控和日志分析</li>
+            <li><strong>安全最佳实践</strong>：HTTPS、安全头、权限控制</li>
+            <li><strong>性能优化</strong>：缓存、压缩、负载均衡</li>
+            <li><strong>故障排查</strong>：常见问题诊断和解决</li>
+        </ol>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="bi bi-code-square"></i> 项目信息</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <td><strong>版本</strong></td>
+                        <td>1.0.0</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Python版本</strong></td>
+                        <td>3.8+</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Flask版本</strong></td>
+                        <td>2.3+</td>
+                    </tr>
+                    <tr>
+                        <td><strong>许可证</strong></td>
+                        <td>MIT</td>
+                    </tr>
+                    <tr>
+                        <td><strong>作者</strong></td>
+                        <td>Python Rookie</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5><i class="bi bi-link-45deg"></i> 相关链接</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="https://flask.palletsprojects.com/" class="btn btn-outline-primary btn-sm" target="_blank">
+                        <i class="bi bi-book"></i> Flask文档
+                    </a>
+                    <a href="https://gunicorn.org/" class="btn btn-outline-success btn-sm" target="_blank">
+                        <i class="bi bi-server"></i> Gunicorn文档
+                    </a>
+                    <a href="https://nginx.org/" class="btn btn-outline-info btn-sm" target="_blank">
+                        <i class="bi bi-globe"></i> Nginx文档
+                    </a>
+                    <a href="https://docs.docker.com/" class="btn btn-outline-primary btn-sm" target="_blank">
+                        <i class="bi bi-box"></i> Docker文档
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5><i class="bi bi-cpu"></i> 系统要求</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-check text-success"></i> Python 3.8+</li>
+                    <li><i class="bi bi-check text-success"></i> 2GB+ RAM</li>
+                    <li><i class="bi bi-check text-success"></i> 10GB+ 磁盘空间</li>
+                    <li><i class="bi bi-check text-success"></i> Linux/Windows/macOS</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <h2>部署架构图</h2>
+        <div class="text-center">
+            <svg width="800" height="400" viewBox="0 0 800 400" class="border rounded">
+                <!-- 用户 -->
+                <rect x="50" y="50" width="80" height="60" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5"/>
+                <text x="90" y="75" text-anchor="middle" font-size="12" font-weight="bold">用户</text>
+                <text x="90" y="90" text-anchor="middle" font-size="10">浏览器</text>
+                
+                <!-- 负载均衡器 -->
+                <rect x="200" y="50" width="80" height="60" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+                <text x="240" y="75" text-anchor="middle" font-size="12" font-weight="bold">负载均衡</text>
+                <text x="240" y="90" text-anchor="middle" font-size="10">Nginx</text>
+                
+                <!-- Web服务器 -->
+                <rect x="350" y="20" width="80" height="60" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+                <text x="390" y="45" text-anchor="middle" font-size="12" font-weight="bold">Web服务器1</text>
+                <text x="390" y="60" text-anchor="middle" font-size="10">Gunicorn</text>
+                
+                <rect x="350" y="100" width="80" height="60" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+                <text x="390" y="125" text-anchor="middle" font-size="12" font-weight="bold">Web服务器2</text>
+                <text x="390" y="140" text-anchor="middle" font-size="10">Gunicorn</text>
+                
+                <!-- 应用 -->
+                <rect x="500" y="50" width="80" height="60" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+                <text x="540" y="75" text-anchor="middle" font-size="12" font-weight="bold">Flask应用</text>
+                <text x="540" y="90" text-anchor="middle" font-size="10">Python</text>
+                
+                <!-- 数据库 -->
+                <rect x="650" y="50" width="80" height="60" fill="#fce4ec" stroke="#c2185b" stroke-width="2" rx="5"/>
+                <text x="690" y="75" text-anchor="middle" font-size="12" font-weight="bold">数据库</text>
+                <text x="690" y="90" text-anchor="middle" font-size="10">PostgreSQL</text>
+                
+                <!-- 监控 -->
+                <rect x="350" y="200" width="80" height="60" fill="#f1f8e9" stroke="#689f38" stroke-width="2" rx="5"/>
+                <text x="390" y="225" text-anchor="middle" font-size="12" font-weight="bold">监控</text>
+                <text x="390" y="240" text-anchor="middle" font-size="10">Prometheus</text>
+                
+                <!-- 日志 -->
+                <rect x="500" y="200" width="80" height="60" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+                <text x="540" y="225" text-anchor="middle" font-size="12" font-weight="bold">日志</text>
+                <text x="540" y="240" text-anchor="middle" font-size="10">ELK Stack</text>
+                
+                <!-- 连接线 -->
+                <line x1="130" y1="80" x2="200" y2="80" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+                <line x1="280" y1="80" x2="350" y2="50" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+                <line x1="280" y1="80" x2="350" y2="130" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+                <line x1="430" y1="50" x2="500" y2="80" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+                <line x1="430" y1="130" x2="500" y2="80" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+                <line x1="580" y1="80" x2="650" y2="80" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+                <line x1="540" y1="110" x2="540" y2="200" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+                <line x1="390" y1="160" x2="390" y2="200" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+                
+                <!-- 箭头标记 -->
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+                    </marker>
+                </defs>
+                
+                <!-- 标题 -->
+                <text x="400" y="350" text-anchor="middle" font-size="16" font-weight="bold">Flask应用部署架构</text>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading"><i class="bi bi-trophy"></i> 恭喜！</h4>
+            <p>
+                你已经成功运行了这个Flask部署示例应用。这表明你已经掌握了Python Web应用部署的基本技能。
+            </p>
+            <hr>
+            <p class="mb-0">
+                继续探索其他功能，深入学习部署与运维的高级技术！
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

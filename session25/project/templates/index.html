@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block title %}首页 - Flask部署示例{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="jumbotron bg-primary text-white rounded p-5 mb-4">
+            <h1 class="display-4">
+                <i class="bi bi-rocket-takeoff"></i> 
+                欢迎使用Flask部署示例
+            </h1>
+            <p class="lead">
+                这是一个完整的Python Web应用部署示例，展示了从开发到生产环境的完整部署流程。
+            </p>
+            <hr class="my-4">
+            <p>
+                本应用演示了现代Python Web应用的部署最佳实践，包括容器化、负载均衡、监控和CI/CD等。
+            </p>
+            <a class="btn btn-light btn-lg" href="{{ url_for('about') }}" role="button">
+                <i class="bi bi-info-circle"></i> 了解更多
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card status-card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-server display-4 text-primary mb-3"></i>
+                <h5 class="card-title">系统状态</h5>
+                <p class="card-text">实时监控应用和系统状态</p>
+                <div id="api-status" class="mb-3">
+                    <i class="bi bi-hourglass-split"></i> 检查中...
+                </div>
+                <a href="/api/info" class="btn btn-primary" target="_blank">
+                    <i class="bi bi-eye"></i> 查看详情
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card status-card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-heart-pulse display-4 text-success mb-3"></i>
+                <h5 class="card-title">健康检查</h5>
+                <p class="card-text">应用健康状态监控</p>
+                <div id="health-status" class="mb-3">
+                    <i class="bi bi-hourglass-split"></i> 检查中...
+                </div>
+                <a href="/health" class="btn btn-success" target="_blank">
+                    <i class="bi bi-activity"></i> 健康检查
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card status-card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-api display-4 text-info mb-3"></i>
+                <h5 class="card-title">API接口</h5>
+                <p class="card-text">RESTful API服务</p>
+                <div class="mb-3">
+                    <span class="badge bg-info">REST API</span>
+                </div>
+                <a href="/api/echo" class="btn btn-info" target="_blank">
+                    <i class="bi bi-arrow-repeat"></i> 测试API
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <h2><i class="bi bi-gear"></i> 部署特性</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="code-block">
+                    <h5><i class="bi bi-shield-check"></i> 生产就绪</h5>
+                    <ul>
+                        <li>Gunicorn WSGI服务器</li>
+                        <li>Nginx反向代理</li>
+                        <li>SSL/TLS加密</li>
+                        <li>安全头配置</li>
+                        <li>错误处理和日志记录</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="code-block">
+                    <h5><i class="bi bi-speedometer2"></i> 性能优化</h5>
+                    <ul>
+                        <li>静态文件缓存</li>
+                        <li>Gzip压缩</li>
+                        <li>负载均衡</li>
+                        <li>连接池</li>
+                        <li>资源监控</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <h2><i class="bi bi-tools"></i> 运维工具</h2>
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="bi bi-docker display-5 text-primary"></i>
+                        <h6 class="card-title mt-2">Docker</h6>
+                        <p class="card-text small">容器化部署</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="bi bi-diagram-3 display-5 text-success"></i>
+                        <h6 class="card-title mt-2">Kubernetes</h6>
+                        <p class="card-text small">容器编排</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="bi bi-graph-up display-5 text-warning"></i>
+                        <h6 class="card-title mt-2">Prometheus</h6>
+                        <p class="card-text small">监控告警</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="bi bi-git display-5 text-danger"></i>
+                        <h6 class="card-title mt-2">CI/CD</h6>
+                        <p class="card-text small">持续集成</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading"><i class="bi bi-lightbulb"></i> 学习提示</h4>
+            <p>
+                这个应用展示了Python Web应用的完整部署流程。你可以通过以下方式学习：
+            </p>
+            <hr>
+            <ul class="mb-0">
+                <li>查看源代码了解应用结构</li>
+                <li>测试各个API接口的功能</li>
+                <li>学习配置文件的编写</li>
+                <li>实践部署到不同环境</li>
+                <li>监控应用的运行状态</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // 检查健康状态
+    async function checkHealth() {
+        try {
+            const response = await fetch('/health');
+            const data = await response.json();
+            
+            const healthElement = document.getElementById('health-status');
+            if (data.status === 'healthy') {
+                healthElement.innerHTML = '<i class="bi bi-check-circle-fill text-success"></i> 健康';
+            } else {
+                healthElement.innerHTML = '<i class="bi bi-x-circle-fill text-danger"></i> 异常';
+            }
+        } catch (error) {
+            const healthElement = document.getElementById('health-status');
+            healthElement.innerHTML = '<i class="bi bi-x-circle-fill text-danger"></i> 不可用';
+        }
+    }
+    
+    // 页面加载完成后检查健康状态
+    document.addEventListener('DOMContentLoaded', function() {
+        checkHealth();
+        // 每30秒检查一次健康状态
+        setInterval(checkHealth, 30000);
+    });
+</script>
+{% endblock %}
