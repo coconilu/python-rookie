@@ -1,0 +1,38 @@
+# Session23 代码质量检查器项目依赖
+# 安装命令: pip install -r requirements.txt
+
+# 代码质量检查工具
+ruff>=0.1.0              # 快速Python代码检查器
+black>=23.0.0            # 代码格式化工具
+mypy>=1.0.0              # 静态类型检查器
+bandit>=1.7.0            # 安全漏洞检测工具
+
+# 可选的额外工具
+pylint>=2.17.0           # 传统的Python代码检查器
+flake8>=6.0.0            # 另一个代码检查器
+isort>=5.12.0            # 导入语句排序工具
+
+# 开发和测试工具
+pytest>=7.0.0            # 测试框架
+pytest-cov>=4.0.0        # 测试覆盖率
+pre-commit>=3.0.0        # Git钩子管理
+
+# 文档和报告工具
+rich>=13.0.0             # 美化控制台输出
+click>=8.0.0             # 命令行接口工具
+tabulate>=0.9.0          # 表格格式化
+
+# 类型检查相关
+types-requests>=2.28.0   # requests库的类型存根
+types-setuptools>=65.0.0 # setuptools库的类型存根
+
+# 注意事项:
+# 1. 版本号使用 >= 确保兼容性
+# 2. 核心工具（ruff, black, mypy, bandit）是必需的
+# 3. 其他工具是可选的，可根据需要安装
+# 4. 在生产环境中可能需要固定具体版本号
+
+# 安装示例:
+# pip install -r requirements.txt                    # 安装所有依赖
+# pip install ruff black mypy bandit                 # 只安装核心工具
+# pip install -r requirements.txt --upgrade          # 升级所有依赖

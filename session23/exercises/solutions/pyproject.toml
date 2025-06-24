@@ -1,0 +1,240 @@
+# Session23 配置文件示例：pyproject.toml
+# 这个文件展示了如何配置现代Python代码质量工具
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "session23-code-quality"
+version = "1.0.0"
+description = "Session23 代码质量与规范教程"
+authors = [{name = "Python教程团队", email = "team@example.com"}]
+requires-python = ">=3.8"
+dependencies = [
+    "ruff>=0.1.0",
+    "black>=23.0.0",
+    "mypy>=1.0.0",
+    "bandit>=1.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pre-commit>=3.0.0",
+]
+
+# Ruff 配置 - 现代Python代码检查工具
+[tool.ruff]
+# 代码行长度限制
+line-length = 88
+# 目标Python版本
+target-version = "py38"
+# 排除的文件和目录
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+
+[tool.ruff.lint]
+# 启用的规则集
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "N",    # pep8-naming
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "S",    # flake8-bandit
+    "T20",  # flake8-print
+    "PT",   # flake8-pytest-style
+    "Q",    # flake8-quotes
+    "RET",  # flake8-return
+    "SIM",  # flake8-simplify
+    "ARG",  # flake8-unused-arguments
+    "PTH",  # flake8-use-pathlib
+    "ERA",  # eradicate
+    "PL",   # pylint
+    "TRY",  # tryceratops
+    "RUF",  # ruff-specific rules
+]
+
+# 忽略的规则
+ignore = [
+    "E203",    # whitespace before ':' (conflicts with black)
+    "E501",    # line too long (handled by black)
+    "S101",    # use of assert (common in tests)
+    "S311",    # random module (not always a security issue)
+    "PLR0913", # too many arguments
+    "PLR0915", # too many statements
+    "TRY003",  # avoid specifying long messages outside exception class
+]
+
+# 每个文件的特定忽略规则
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]  # unused imports in __init__.py
+"tests/*" = [
+    "S101",   # assert statements in tests
+    "ARG001", # unused function arguments in tests
+    "PLR2004", # magic values in tests
+]
+"examples/*" = [
+    "T20",    # print statements in examples
+    "S311",   # random module usage in examples
+]
+"exercises/*" = [
+    "T20",    # print statements in exercises
+    "S311",   # random module usage in exercises
+]
+
+# Import 排序配置
+[tool.ruff.lint.isort]
+known-first-party = ["session23"]
+force-sort-within-sections = true
+split-on-trailing-comma = true
+
+# 函数复杂度检查
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+# Pylint 风格配置
+[tool.ruff.lint.pylint]
+max-args = 8
+max-branches = 12
+max-returns = 6
+max-statements = 50
+
+# Black 配置 - 代码格式化工具
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+exclude = '''
+/(
+  (
+      \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''
+
+# MyPy 配置 - 静态类型检查
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_optional = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+show_error_codes = true
+show_column_numbers = true
+pretty = true
+
+# 第三方库的类型检查配置
+[[tool.mypy.overrides]]
+module = [
+    "requests.*",
+    "pandas.*",
+    "numpy.*",
+    "matplotlib.*",
+    "seaborn.*",
+]
+ignore_missing_imports = true
+
+# 测试文件的宽松配置
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+# Bandit 配置 - 安全检查
+[tool.bandit]
+exclude_dirs = ["tests", "venv", ".venv"]
+skips = [
+    "B101",  # assert_used - 在测试中使用assert是正常的
+    "B601",  # paramiko_calls - 如果项目使用paramiko
+]
+
+# Coverage 配置 - 代码覆盖率
+[tool.coverage.run]
+source = ["session23"]
+omit = [
+    "*/tests/*",
+    "*/venv/*",
+    "*/.venv/*",
+    "*/examples/*",
+    "*/exercises/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\bProtocol\):",
+    "@(abc\.)?abstractmethod",
+]
+show_missing = true
+skip_covered = false
+precision = 2
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+# Pytest 配置 - 测试框架
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers --strict-config"
+testpaths = ["tests"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m "not slow"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+filterwarnings = [
+    "error",
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning",
+]
