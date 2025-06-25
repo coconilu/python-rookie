@@ -1,0 +1,261 @@
+# Session29 项目 GitHub Actions CI/CD 配置
+# 文件路径: .github/workflows/test.yml
+
+name: 测试和调试项目 CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'session29/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'session29/**'
+  schedule:
+    # 每天凌晨2点运行
+    - cron: '0 2 * * *'
+
+jobs:
+  test:
+    name: 测试 Python ${{ matrix.python-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.8', '3.9', '3.10', '3.11']
+        exclude:
+          # 排除一些组合以节省资源
+          - os: macos-latest
+            python-version: '3.8'
+          - os: windows-latest
+            python-version: '3.8'
+    
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v4
+    
+    - name: 设置 Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+    
+    - name: 升级 pip
+      run: |
+        python -m pip install --upgrade pip
+        pip install wheel setuptools
+    
+    - name: 安装依赖
+      run: |
+        cd session29/project
+        pip install -r requirements.txt
+    
+    - name: 代码风格检查
+      run: |
+        pip install flake8 black
+        cd session29/project
+        # 检查代码风格
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # 检查代码格式
+        black --check --diff .
+    
+    - name: 类型检查
+      run: |
+        pip install mypy
+        cd session29/project
+        mypy . --ignore-missing-imports || true
+    
+    - name: 运行单元测试
+      run: |
+        cd session29/project
+        python -m pytest -v --tb=short --cov=. --cov-report=xml --cov-report=term-missing
+    
+    - name: 运行性能测试
+      run: |
+        cd session29/project
+        python -m pytest -v -m performance --tb=short || true
+    
+    - name: 运行集成测试
+      run: |
+        cd session29/project
+        python -m pytest -v -m integration --tb=short
+    
+    - name: 上传覆盖率报告
+      if: matrix.python-version == '3.10' && matrix.os == 'ubuntu-latest'
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./session29/project/coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: false
+    
+    - name: 生成测试报告
+      if: always()
+      run: |
+        cd session29/project
+        python -c "
+        import json
+        import datetime
+        report = {
+            'timestamp': datetime.datetime.now().isoformat(),
+            'python_version': '${{ matrix.python-version }}',
+            'os': '${{ matrix.os }}',
+            'status': 'completed'
+        }
+        with open('test_report.json', 'w') as f:
+            json.dump(report, f, indent=2)
+        "
+    
+    - name: 上传测试报告
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-report-${{ matrix.python-version }}-${{ matrix.os }}
+        path: session29/project/test_report.json
+        retention-days: 30
+
+  security-scan:
+    name: 安全扫描
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v4
+    
+    - name: 设置 Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: 安装安全扫描工具
+      run: |
+        pip install safety bandit
+    
+    - name: 检查依赖安全性
+      run: |
+        cd session29/project
+        safety check -r requirements.txt || true
+    
+    - name: 代码安全扫描
+      run: |
+        cd session29/project
+        bandit -r . -f json -o bandit_report.json || true
+    
+    - name: 上传安全报告
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: security-report
+        path: session29/project/bandit_report.json
+        retention-days: 30
+
+  performance-benchmark:
+    name: 性能基准测试
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v4
+    
+    - name: 设置 Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: 安装依赖
+      run: |
+        cd session29/project
+        pip install -r requirements.txt
+        pip install pytest-benchmark
+    
+    - name: 运行基准测试
+      run: |
+        cd session29/project
+        python -m pytest --benchmark-only --benchmark-json=benchmark.json || true
+    
+    - name: 上传基准测试结果
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: benchmark-results
+        path: session29/project/benchmark.json
+        retention-days: 30
+
+  documentation:
+    name: 文档生成
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v4
+    
+    - name: 设置 Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: 安装文档工具
+      run: |
+        pip install sphinx sphinx-rtd-theme
+    
+    - name: 生成 API 文档
+      run: |
+        cd session29/project
+        # 创建简单的文档结构
+        mkdir -p docs
+        echo "# Session29 项目文档" > docs/README.md
+        echo "" >> docs/README.md
+        echo "## 项目概述" >> docs/README.md
+        echo "这是一个完整的Python测试和调试项目演示。" >> docs/README.md
+        echo "" >> docs/README.md
+        echo "## 功能特性" >> docs/README.md
+        echo "- 完整的单元测试" >> docs/README.md
+        echo "- 集成测试" >> docs/README.md
+        echo "- 性能测试" >> docs/README.md
+        echo "- Mock测试" >> docs/README.md
+        echo "- 异步测试" >> docs/README.md
+        echo "- 调试技术" >> docs/README.md
+    
+    - name: 上传文档
+      uses: actions/upload-artifact@v3
+      with:
+        name: documentation
+        path: session29/project/docs/
+        retention-days: 30
+
+  notify:
+    name: 通知
+    runs-on: ubuntu-latest
+    needs: [test, security-scan, performance-benchmark]
+    if: always()
+    
+    steps:
+    - name: 发送通知
+      run: |
+        echo "CI/CD 流水线完成"
+        echo "测试状态: ${{ needs.test.result }}"
+        echo "安全扫描状态: ${{ needs.security-scan.result }}"
+        echo "性能测试状态: ${{ needs.performance-benchmark.result }}"
+        
+        # 这里可以添加实际的通知逻辑
+        # 比如发送邮件、Slack消息等
+
+# 工作流程配置
+env:
+  # 环境变量
+  PYTHONPATH: ${{ github.workspace }}/session29/project
+  PYTEST_CURRENT_TEST: true
+  
+# 权限设置
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+# 并发控制
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
