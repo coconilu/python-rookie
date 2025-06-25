@@ -1,0 +1,94 @@
+# Session30: 项目部署与维护 - 依赖包列表
+# 安装命令: pip install -r requirements.txt
+
+# 系统监控和性能分析
+psutil>=5.9.0              # 系统和进程监控
+
+# Web框架和HTTP客户端
+requests>=2.28.0           # HTTP请求库
+flask>=2.3.0               # Web框架（用于健康检查端点）
+
+# 数据处理和分析
+pandas>=1.5.0              # 数据分析
+numpy>=1.24.0              # 数值计算
+
+# 配置文件处理
+PyYAML>=6.0                # YAML配置文件解析
+toml>=0.10.2               # TOML配置文件解析
+
+# 日志和监控
+loguru>=0.7.0              # 高级日志库
+prometheus-client>=0.16.0  # Prometheus监控指标
+
+# 容器化和部署
+docker>=6.1.0              # Docker Python SDK
+kubernetes>=26.1.0         # Kubernetes Python客户端
+
+# 云平台SDK
+boto3>=1.26.0              # AWS SDK
+azure-mgmt-compute>=29.1.0 # Azure SDK
+google-cloud-compute>=1.11.0 # Google Cloud SDK
+
+# 数据库连接
+psycopg2-binary>=2.9.0     # PostgreSQL连接器
+redis>=4.5.0               # Redis连接器
+SQLAlchemy>=2.0.0          # ORM框架
+
+# 测试和代码质量
+pytest>=7.3.0              # 测试框架
+pytest-cov>=4.1.0          # 测试覆盖率
+black>=23.3.0              # 代码格式化
+flake8>=6.0.0              # 代码检查
+mypy>=1.3.0                # 类型检查
+
+# 安全扫描
+safety>=2.3.0              # 安全漏洞扫描
+bandit>=1.7.0              # 安全代码分析
+
+# 性能分析
+memory-profiler>=0.60.0    # 内存分析
+line-profiler>=4.0.0       # 行级性能分析
+py-spy>=0.3.14             # Python性能分析器
+
+# 网络和通信
+paramiko>=3.1.0            # SSH连接
+fabric>=3.1.0              # 远程部署工具
+
+# 任务调度
+celery>=5.2.0              # 分布式任务队列
+APScheduler>=3.10.0        # 任务调度器
+
+# 环境变量管理
+python-dotenv>=1.0.0       # .env文件支持
+
+# 图表和可视化
+matplotlib>=3.7.0          # 图表绘制
+seaborn>=0.12.0            # 统计图表
+plotly>=5.14.0             # 交互式图表
+
+# 邮件通知
+smtplib                    # 内置SMTP库
+email-validator>=2.0.0     # 邮箱验证
+
+# 时间处理
+pytz>=2023.3               # 时区处理
+dateutil>=2.8.2            # 日期工具
+
+# 加密和安全
+cryptography>=40.0.0       # 加密库
+PyJWT>=2.7.0               # JWT令牌
+
+# 配置管理
+click>=8.1.0               # 命令行工具
+rich>=13.3.0               # 富文本终端输出
+
+# 开发工具
+ipython>=8.13.0            # 交互式Python
+jupyter>=1.0.0             # Jupyter笔记本
+
+# 注意事项:
+# 1. 版本号仅供参考，请根据实际项目需求调整
+# 2. 某些包可能需要系统级依赖，请参考官方文档
+# 3. 在生产环境中建议锁定具体版本号
+# 4. 使用虚拟环境安装依赖包
+# 5. 定期更新依赖包以获取安全补丁
